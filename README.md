@@ -204,6 +204,7 @@ Installez les dépendances:
 bashpip install flask opencv-python tensorflow numpy
 
 Créez la structure de dossiers selon le README fourni:
+```
 ├── app.py
 ├── templates/
 │   └── index.html
@@ -215,6 +216,7 @@ Créez la structure de dossiers selon le README fourni:
 ├── uploads/
 └── models/
     └── captcha_model.h5
+```
 
 Copiez vos fichiers dans ces dossiers:
 
