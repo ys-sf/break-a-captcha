@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA Solver</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="text-center mb-0">CAPTCHA Solver</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <p>Ce système utilise un réseau de neurones convolutifs pour reconnaître automatiquement les caractères d'un CAPTCHA.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4>Télécharger une image CAPTCHA:</h4>
+                            <form id="uploadForm" class="d-flex flex-column align-items-center">
+                                <div class="mb-3 w-100">
+                                    <input class="form-control form-control-lg" type="file" id="captchaFile" accept="image/*">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg">Résoudre le CAPTCHA</button>
+                            </form>
+                        </div>
+
+                        <div id="loadingIndicator" class="text-center mt-4 d-none">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement...</span>
+                            </div>
+                            <p class="mt-2">Analyse en cours...</p>
+                        </div>
+
+                        <div id="result" class="mt-4 d-none">
+                            <h4 class="text-center">Résultat:</h4>
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <div class="text-center">
+                                        <img id="captchaImage" class="img-fluid border rounded" alt="CAPTCHA image">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="result-box p-3 text-center">
+                                        <h5>Texte détecté:</h5>
+                                        <h2 id="captchaText" class="display-4 font-monospace text-success"></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="errorMessage" class="alert alert-danger mt-4 d-none">
+                            Une erreur s'est produite. Veuillez réessayer.
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button id="resetButton" class="btn btn-outline-secondary d-none">Réinitialiser</button>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+                        <p class="mb-0">Projet Break a CAPTCHA | Machine Learning</p>
+                    </div>
+                </div>
+
+                <div class="card shadow mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="text-center mb-0">Statistiques du modèle</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="stat-card p-3 mb-3 bg-light rounded">
+                                    <h5>Accuracy globale</h5>
+                                    <h2 class="display-5">50.93%</h2>
+                                    <p class="text-muted">CAPTCHA complets</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="stat-card p-3 mb-3 bg-light rounded">
+                                    <h5>Accuracy par caractère</h5>
+                                    <h2 class="display-5">85.33%</h2>
+                                    <p class="text-muted">Caractères individuels</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <h5>Accuracy par position:</h5>
+                            <div class="progress mb-2" style="height: 25px;">
+                                <div class="progress-bar" role="progressbar" style="width: 97.2%;" aria-valuenow="97.2" aria-valuemin="0" aria-valuemax="100">Position 1: 97.2%</div>
+                            </div>
+                            <div class="progress mb-2" style="height: 25px;">
+                                <div class="progress-bar" role="progressbar" style="width: 88.8%;" aria-valuenow="88.8" aria-valuemin="0" aria-valuemax="100">Position 2: 88.8%</div>
+                            </div>
+                            <div class="progress mb-2" style="height: 25px;">
+                                <div class="progress-bar" role="progressbar" style="width: 79.0%;" aria-valuenow="79.0" aria-valuemin="0" aria-valuemax="100">Position 3: 79.0%</div>
+                            </div>
+                            <div class="progress mb-2" style="height: 25px;">
+                                <div class="progress-bar" role="progressbar" style="width: 79.4%;" aria-valuenow="79.4" aria-valuemin="0" aria-valuemax="100">Position 4: 79.4%</div>
+                            </div>
+                            <div class="progress mb-2" style="height: 25px;">
+                                <div class="progress-bar" role="progressbar" style="width: 82.2%;" aria-valuenow="82.2" aria-valuemin="0" aria-valuemax="100">Position 5: 82.2%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
