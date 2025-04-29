@@ -1,0 +1,11 @@
+ÉVALUATION DU MODÈLE DE RECONNAISSANCE CAPTCHA
+==============================================
+
+Accuracy globale des CAPTCHA: 0.5093
+Accuracy globale par caractère: 0.8533
+Accuracy par position:
+  Position 1: 0.9720
+  Position 2: 0.8879
+  Position 3: 0.7897
+  Position 4: 0.7944
+  Position 5: 0.8224
